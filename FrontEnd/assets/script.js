@@ -11,10 +11,16 @@ async function init() {
 
   categories = await getData('categories')
   displayCategories(categories)
-
-  logIn()
 }
 init()
+
+/*
+   fonction changer page une fois que la connexion est réussie
+*/
+if (checkConnexion()) {
+  replaceTitle()
+  removeCategories()
+}
 
 /*
    API FONCTION
@@ -24,7 +30,6 @@ async function getData(type) {
   if (response.ok) {
     return response.json()
   } else {
-    console.log(response)
   }
 }
 
@@ -99,24 +104,37 @@ function displayData(works) {
 }
 
 /*
-Fonction pour gérer la connexion
+   fonction remplacer le titre de login
 */
-function logIn() {
-  const formulaireLogIn = document.querySelector('.formulaireLogIn')
-  formulaireLogIn.addEventListener('submit', function (event) {
-    event.preventDefault()
-    const login = {
-      email: event.target.querySelector('[name=email]').value,
-      password: event.target.querySelector('[name=MDP]').value,
-    }
-    const chargeUtile = JSON.stringify(login)
-    fetch('http://localhost:5678/api/users/login', {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: chargeUtile,
-    })
-  })
+function replaceTitle() {
+  const titreLogIn = document.querySelector('#loginLogoutLink')
+  titreLogIn.id = 'logOutTitle'
+  titreLogIn.innerHTML = ''
+  titreLogIn.textContent = 'logout'
 }
+
+/*
+   Fonction supprimer catégories
+*/
+function removeCategories() {
+  const sectionFiltrage = document.getElementById('filtrage')
+  sectionFiltrage.remove()
+}
+
+/*
+   Fonction ajouter bouton modifier
+*/
+
+/*
+   Fonction clic sur logOut
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  const lienLogOut = document.querySelector('#logOutTitle')
+  lienLogOut.addEventListener('click', function (event) {
+    event.preventDefault()
+    window.localStorage.removeItem('tokenAcces')
+    window.location.href = 'index.html'
+    titreLogIn.innerHTML = ''
+    titreLogIn.textContent = 'login'
+  })
+})
