@@ -10,12 +10,18 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="assets/utile.js"></script>
+	<script defer src="assets/utile.js"></script>
 	<script defer src="assets/script.js"></script>
 </head>
 
 <body>
+
+	<div id="blackBanner" style="display: none;">
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -39,15 +45,19 @@
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
 					couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier
 					sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+					décorateur(trice)
 				</p>
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<div id="containerTitreBouton">
+				<h2>Mes Projets</h2>
+				<a href="#modal" class="js-modal" id="linkIcon"></a>
+				<a href="#modal" class="js-modal" id="containerModify"></a>
+			</div>
 			<div id="filtrage"></div>
 			<div class="gallery">
-
 			</div>
 		</section>
 		<section id="contact">
@@ -63,8 +73,48 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
-	</main>
+		<section id="modalContainer">
+			<aside id="modalGallery" class="modal" style="display: none;">
 
+				<div class="modal-wrapper js-modal-stop">
+					<i class="iconCloseModal fa-solid fa-xmark fa-xl"></i>
+					<h2 id="titleModal">Galerie photo</h2>
+					<figure id="mediasModal">
+						<!-- <img src="" alt=""> -->
+					</figure>
+					<button href="#modal-addPhoto" id="btnAddPhoto">Ajouter une photo</button>
+				</div>
+			</aside>
+
+			<aside id="modal-add-photo" class="modal" style="display: none;">
+				<div class="modal-wrapper js-modal-stop">
+
+					<i class="iconCloseModal fa-solid fa-xmark fa-xl"></i>
+					<i class="iconReturn fa-solid fa-arrow-left fa-lg"></i>
+					<h2>Ajout photo</h2>
+					<form enctype="multipart/form-data" id="formAddPhoto" method="post">
+						<div class="formData">
+							<div>
+								<div id="addPhotoContainer">
+									<i class="fa-regular fa-image"></i>
+									<input type="file" name="image" id="inputPhoto">
+									<label for="inputPhoto" class="inputPhoto">+ Ajouter Photo</label>
+									<span>jpg, png : 4mo max</span>
+								</div>
+							</div>
+							<label for="title">Titre</label>
+							<input type="text" name="title">
+							<label for="catégorie">Catégorie</label>
+							<select name="category" id="categorie"></select>
+						</div>
+						<button id="btnValid" type="submit">Valider</button>
+					</form>
+
+				</div>
+			</aside>
+
+		</section>
+	</main>
 	<footer>
 		<nav>
 			<ul>
@@ -72,6 +122,9 @@
 			</ul>
 		</nav>
 	</footer>
+
+
 </body>
+
 
 </html>

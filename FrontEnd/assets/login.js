@@ -8,12 +8,12 @@ formulaireLogIn.addEventListener('submit', function (event) {
     email: event.target.querySelector('[name=email]').value,
     password: event.target.querySelector('[name=password]').value,
   }
-  console.log(loginData)
+  // console.log(loginData)
   const data = JSON.stringify(loginData)
   logIn(data)
 })
 
-if (checkConnexion()) {
+if (isConnected()) {
   window.location.href = 'index.html'
 }
 
