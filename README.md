@@ -1,3 +1,3 @@
 # Portfolio-architecte-sophie-bluel
 
-Interagir la page d'architecte avec Javascript
+Créer la page en Javascript pour ajouter les fonctionnalités telles que ajouter, supprimer la photo, ajouter les projets réalisé (données trouvées sur Swagger)
